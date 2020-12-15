@@ -20,7 +20,7 @@ pipeline {
                     }
 
                     stage('Run') {
-                        sh 'gradlew bootRun &'
+                        sh './gradlew bootRun &'
                         sh 'sleep 20'
                     }
                     stage('Rest') {
