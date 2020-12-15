@@ -15,7 +15,7 @@ pipeline {
                         def scannerHome = tool 'sonar-scanner';
                         //corresponde a lo configurado en sistema Jenkins
                         withSonarQubeEnv('sonar-server') { 
-                            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build"
+                            bat "${scannerHome}\\bin\\sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build"
                         }
                     }
 
