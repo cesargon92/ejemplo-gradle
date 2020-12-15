@@ -7,11 +7,16 @@ pipeline {
             steps {
                 script {
                     stage('Build & Test'){
-                        //
+                        sh "./gradlew clean build"
                     }
 
                     stage('Sonar'){
-                        //
+                        //corresponde al scanner configurado en global tools Jenkins
+                        def scannerHome = tool 'sonar-scanner';
+                        //corresponde a lo configurado en sistema Jenkins
+                        withSonarQubeEnv('sonar-server') { 
+                            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build"
+                        }
                     }
 
                     stage('Run'){
