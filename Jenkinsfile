@@ -19,16 +19,16 @@ pipeline {
                         }
                     }
 
-                    stage('Run'){
-                        //
+                    stage('Run') {
+                        sh 'gradlew bootRun &'
+                        sh 'sleep 20'
                     }
-
-                    stage('Rest'){
-                        //
+                    stage('Rest') {
+                        sh 'curl -X GET "http://localhost:8888/rest/mscovid/test?msg=testing"'
                     }
 
                     stage('Nexus'){
-                        //
+                        nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: 'C:/Proyectos/ejemplo-gradle/build/libs/DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
                     }
                 }
             }
