@@ -15,8 +15,8 @@ def call() {
         sh 'mvn clean package -e'
     }
     stage('SonarQube analysis') {
-        withSonarQubeEnv(installationName: 'sonar-scanner') {
-            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+        withSonarQubeEnv(installationName: 'sonar-server') {
+            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar-scanner'
         }
     }
     stage('UploadNexus') {
