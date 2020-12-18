@@ -1,5 +1,4 @@
-﻿/* groovylint-disable LineLength */
-pipeline {
+﻿pipeline {
     agent any
     parameters { choice(name: 'selector', choices: ['gradle', 'maven'], description: 'Seleccione') }
     stages {
