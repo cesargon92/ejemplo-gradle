@@ -21,12 +21,10 @@ pipeline {
 
     post{
         success {
-            def mensaje = "[César González][${env.JOB_NAME}][${params.selector}] Ejecución exitosa"
-            slackSend color: 'good', message: mensaje, tokenCredentialId: 'slack-token'
+            slackSend color: 'good', message: "[César González][${env.JOB_NAME}][${params.selector}] Ejecución exitosa", tokenCredentialId: 'slack-token'
         }
         failure {
-            def mensaje = "[César González][${env.JOB_NAME}][${params.selector}] Ejecución fallida en stage [${env.TASK}]"
-            slackSend color: 'danger', message: mensaje, tokenCredentialId: 'slack-token'
+            slackSend color: 'danger', message: "[César González][${env.JOB_NAME}][${params.selector}] Ejecución fallida en stage [${env.TASK}]", tokenCredentialId: 'slack-token'
         }
     }
 }
